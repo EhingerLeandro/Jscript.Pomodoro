@@ -7,6 +7,7 @@ let current = null;
 const bAdd = document.querySelector("#bAdd");
 const itTask = document.querySelector("#itTask");
 const form = document.querySelector("#form");
+const taskName = document.querySelector('#time #taskName');
 
 form.addEventListener('submit', e=>{
     e.preventDefault();
@@ -52,7 +53,39 @@ function renderTasks(){
 }
 
 function startButtonHandler(id){
-    time = 25*60;
+    time = 15;
     current = id;
-    const taskIndex = tasks.findIndex()
+    const taskIndex = tasks.findIndex(task =>task.id === id);
+    taskName.textContent = tasks[taskIndex].title;
+
+    timer = setInterval(()=>{
+        timerHandler(id);
+    }, 1000);
+
+    function timerHandler(id){
+        time--;
+        renderTime();
+        if(time === 0){
+            clearInterval(timer);
+            markedCompleted(id);
+            renderTasks();
+        }
+    } 
+
+    function renderTime(){
+        const timeDiv = document.querySelector("#time #value");
+        const minutes = parseInt(time / 60);
+        const seconds = parseInt(time % 60);
+
+        timeDiv.textContent = `${minutes<10 ?'0':''}${minutes}:${seconds<10 ?'0':''}${seconds}`;
+    }
+
+    function markedCompleted(id){
+        const taskIndex = tasks.findIndex(task =>task.id === id);
+        tasks[taskIndex].completed = true;
+
+    }
+{
+
+}    
 }
