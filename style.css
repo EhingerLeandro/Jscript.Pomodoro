@@ -1,0 +1,26 @@
+body{
+    font-family:Helvetica;
+    background-color: #f1f;
+}
+
+#app{
+    background-color: #fff;
+    width: 500px;
+    margin: 0 auto;
+    padding: 22px;
+    border: solid 1px #ccc
+}
+
+#time{
+    text-align: center;
+    padding: 20px 0;
+}
+
+#value{
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.format{
+    text-align: center;
+}

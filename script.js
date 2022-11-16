@@ -8,6 +8,8 @@ const bAdd = document.querySelector("#bAdd");
 const itTask = document.querySelector("#itTask");
 const form = document.querySelector("#form");
 const taskName = document.querySelector('#time #taskName');
+renderTime();
+renderTasks();
 
 form.addEventListener('submit', e=>{
     e.preventDefault();
@@ -53,7 +55,8 @@ function renderTasks(){
 }
 
 function startButtonHandler(id){
-    time = 15;
+    time = 25*60;
+    renderTime();
     current = id;
     const taskIndex = tasks.findIndex(task =>task.id === id);
     taskName.textContent = tasks[taskIndex].title;
@@ -68,16 +71,32 @@ function startButtonHandler(id){
         if(time === 0){
             clearInterval(timer);
             markedCompleted(id);
+            timer= null;
             renderTasks();
+            startBreak();
+            
         }
     } 
 
-    function renderTime(){
-        const timeDiv = document.querySelector("#time #value");
-        const minutes = parseInt(time / 60);
-        const seconds = parseInt(time % 60);
+    function startBreak(){
+        time =5*60;
+        renderTime();
+        taskName.textContent ="Break";
+        timerBreak = setInterval(()=>{
+            timerBreakHandler();
+        },1000);
+    }
 
-        timeDiv.textContent = `${minutes<10 ?'0':''}${minutes}:${seconds<10 ?'0':''}${seconds}`;
+    function timerBreakHandler(){
+        time--;
+        renderTime();
+        if(time===0){
+            clearInterval(timerBreak);
+            current= null;
+            timerBreak=null;
+            taskName.textContent = '';
+            renderTasks();
+        }
     }
 
     function markedCompleted(id){
@@ -85,7 +104,14 @@ function startButtonHandler(id){
         tasks[taskIndex].completed = true;
 
     }
-{
 
-}    
+}   
+
+function renderTime(){
+    const timeDiv = document.querySelector("#time #value");
+    const minutes = parseInt(time / 60);
+    const seconds = parseInt(time % 60);
+
+    timeDiv.textContent = `${minutes<10 ?'0':''}${minutes}:${seconds<10 ?'0':''}${seconds}`;
 }
+
