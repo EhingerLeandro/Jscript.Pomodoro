@@ -33,7 +33,7 @@ function renderTasks(){
     const html = tasks.map(task =>{
         return `
             <div class ="task">
-                <div class="completed">${task.completed ? `<span>Done!</span>` : `<button class='start-button' data-id="${task.id}">Start</button>`}</div>
+                <div class="completed">${task.completed ? `<span class="done">Done!</span>` : `<button class='start-button' data-id="${task.id}">Start</button>`}</div>
                 <div class "title">${task.title}</div>
             </div>
         `;
@@ -55,7 +55,7 @@ function renderTasks(){
 }
 
 function startButtonHandler(id){
-    time = 25*60;
+    time = 10;
     renderTime();
     current = id;
     const taskIndex = tasks.findIndex(task =>task.id === id);
@@ -79,7 +79,7 @@ function startButtonHandler(id){
     } 
 
     function startBreak(){
-        time =5*60;
+        time =5;
         renderTime();
         taskName.textContent ="Break";
         timerBreak = setInterval(()=>{

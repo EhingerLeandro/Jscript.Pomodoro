@@ -24,3 +24,43 @@ body{
 .format{
     text-align: center;
 }
+
+input[type="text"]{
+    padding: 10px;
+    border: solid 1px #ccc;
+    width:300px;
+}
+
+button, input[type="submit"]{
+    border: none;
+    background-color: #003366;
+    color:#fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#tasks {
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+    gap:10px;
+}
+
+.task{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.task .completed{
+    display: flex;
+    align-items: center;
+}
+
+.done{
+    display: inline-block;
+    padding: 5px 15px;
+    background-color:#bbb;
+    border-radius: 5px;
+    font-weight:bold;
+}
