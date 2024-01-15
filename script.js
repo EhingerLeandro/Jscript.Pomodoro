@@ -106,7 +106,6 @@ function startButtonHandler(id){
     }
 
 }   
-
 function renderTime(){
     const timeDiv = document.querySelector("#time #value");
     const minutes = parseInt(time / 60);
